@@ -30,3 +30,6 @@
 *.exe
 *.out
 *.app
+/russian-roulette-plus-plus/Release
+/.vs/russian-roulette-plus-plus
+/Release

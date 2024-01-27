@@ -9,7 +9,7 @@ void Russian_roulette_plus_plus::start()
 
 void Russian_roulette_plus_plus::print_title()
 {
-	const std::string version{ "1.0.1" };
+	const std::string version{ "1.0.2" };
 
 	std::cout << "\033[7mRussianRoulette++\033[27m (\033[4mhttps://github.com/yarb00/russian-roulette-plus-plus\033[24m)" << std::endl << "от yarb00 (\033[4mhttps://github.com/yarb00\033[24m)" << std::endl << std::endl << "v" << version << std::endl << std::endl << "-----" << std::endl << std::endl;
 }
@@ -132,16 +132,18 @@ void Russian_roulette_plus_plus::game(gamemodes _gamemode)
 	
 	if (_gamemode != gamemodes::ENDLESS)
 	{
+		int real_attempts{ attempts_left };
+
 		for (attempts_left; attempts_left > 0; attempts_left--)
 		{
 			int number_one{ rand() % 6 + 1 };
 
-			if (number_one == number_two && is_player_move)
+			if (number_one == number_two && is_player_move && attempts_left - real_attempts != 0)
 			{
 				game_result = game_results::OPPONENT_WIN;
 				break;
 			}
-			else if (number_one == number_two && !is_player_move)
+			else if (number_one == number_two && !is_player_move && attempts_left - real_attempts != 0)
 			{
 				game_result = game_results::PLAYER_WIN;
 				break;

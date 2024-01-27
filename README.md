@@ -4,7 +4,11 @@
 
 
 
-Download game: https://github.com/yarb00/russian-roulette-plus-plus/releases
+*Russian roulette written in C++*
+
+
+
+**Download game**: https://github.com/yarb00/russian-roulette-plus-plus/releases
 
 
 

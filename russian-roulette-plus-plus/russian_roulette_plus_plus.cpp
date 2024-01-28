@@ -9,9 +9,9 @@ void Russian_roulette_plus_plus::start()
 
 void Russian_roulette_plus_plus::print_title()
 {
-	const std::string version{ "1.0.2" };
+	const std::string version{ "1.1.0" };
 
-	std::cout << "\033[7mRussianRoulette++\033[27m (\033[4mhttps://github.com/yarb00/russian-roulette-plus-plus\033[24m)" << std::endl << "от yarb00 (\033[4mhttps://github.com/yarb00\033[24m)" << std::endl << std::endl << "v" << version << std::endl << std::endl << "-----" << std::endl << std::endl;
+	std::cout << "\033[7m| RussianRoulette++ |\033[27m (\033[4m https://github.com/yarb00/russian-roulette-plus-plus \033[24m)" << std::endl << "от yarb00 (\033[4m https://github.com/yarb00 \033[24m)" << std::endl << std::endl << "v" << version << std::endl << std::endl << "-----" << std::endl << std::endl;
 }
 
 void Russian_roulette_plus_plus::menu()
@@ -19,7 +19,7 @@ void Russian_roulette_plus_plus::menu()
 	system("cls");
 
 	this->print_title();
-	std::cout << "Добро пожаловать!" << std::endl << std::endl << "Нажмите любую кнопку, чтобы начать игру...";
+	std::cout << "Добро пожаловать в русскую рулетку!" << std::endl << std::endl << "----------" << std::endl << "Нажмите любую кнопку, чтобы начать игру..." << std::endl << "----------";
 
 	system("pause > nul 2>&1");
 
@@ -33,7 +33,7 @@ void Russian_roulette_plus_plus::menu()
 		system("cls");
 
 		this->print_title();
-		std::cout << "Выберите режим игры и введите его номер:" << std::endl << std::endl << "0. Выйти из игры" << std::endl << std::endl << "1. 6 ходов (всего 6 попыток/выстрелов) [\033[7mКЛАССИЧЕСКИЙ\033[27m]" << std::endl << "2. Бесконечный (продолжается, пока кто-нибудь не проиграет)" << std::endl << "3. 12 ходов (всего 12 попыток/выстрелов) [\033[7mРЕКОМЕНДУЕТСЯ\033[27m]" << std::endl << "4. 24 хода (всего 24 попытки/выстрела)" << std::endl << std::endl;
+		std::cout << "Выберите режим игры и введите его номер:" << std::endl << std::endl << "0. Выйти из игры" << std::endl << std::endl << "1. 6 ходов (всего 6 попыток/выстрелов) [КЛАССИЧЕСКИЙ]" << std::endl << "2. Бесконечный (продолжается, пока кто-нибудь не проиграет)" << std::endl << "3. 12 ходов (всего 12 попыток/выстрелов) [РЕКОМЕНДУЕТСЯ]" << std::endl << "4. 24 хода (всего 24 попытки/выстрела)" << std::endl << std::endl;
 		std::cout << "Введите номер и нажмите Enter |>>> ";
 		std::cin >> gamemode;
 
@@ -103,15 +103,15 @@ void Russian_roulette_plus_plus::game(gamemodes _gamemode)
 			system("cls");
 
 			this->print_title();
-			std::cout << "В прошлом ходе выстрела не произошло." << std::endl << std::endl;
+			if (attempts_left != 0) std::cout << "В прошлом ходе выстрела не произошло." << std::endl << std::endl;
 
 			if (is_player_move)
 			{
-				std::cout << "Сейчас \033[7mВАШ\033[27m ход." << std::endl << std::endl << "Нажмите любую кнопку, чтобы сделать себе выстрел...";
+				std::cout << "Сейчас ВАШ ход." << std::endl << std::endl << "Нажмите любую кнопку, чтобы сделать себе выстрел...";
 			}
 			else
 			{
-				std::cout << "Сейчас ход \033[7mПРОТИВНИКА\033[27m." << std::endl << std::endl << "Нажмите любую кнопку, чтобы сделать в него выстрел...";
+				std::cout << "Сейчас ход ПРОТИВНИКА." << std::endl << std::endl << "Нажмите любую кнопку, чтобы сделать в него выстрел...";
 			}
 
 			system("pause > nul 2>&1");
@@ -154,16 +154,16 @@ void Russian_roulette_plus_plus::game(gamemodes _gamemode)
 			system("cls");
 
 			this->print_title();
-			std::cout << "В прошлом ходе выстрела не произошло." << std::endl << std::endl;
-			std::cout << "Осталось \033[7m" << attempts_left << "\033[27m ходов." << std::endl << std::endl;
+			if (attempts_left - real_attempts != 0) std::cout << "В прошлом ходе выстрела не произошло." << std::endl << std::endl;
+			std::cout << "Осталось " << attempts_left << " ходов." << std::endl << std::endl;
 
 			if (is_player_move)
 			{
-				std::cout << "Сейчас \033[7mВАШ\033[27m ход." << std::endl << std::endl << "Нажмите любую кнопку, чтобы сделать себе выстрел...";
+				std::cout << "Сейчас ВАШ ход." << std::endl << std::endl << "Нажмите любую кнопку, чтобы сделать себе выстрел...";
 			}
 			else
 			{
-				std::cout << "Сейчас ход \033[7mПРОТИВНИКА\033[27m." << std::endl << std::endl << "Нажмите любую кнопку, чтобы сделать в него выстрел...";
+				std::cout << "Сейчас ход ПРОТИВНИКА." << std::endl << std::endl << "Нажмите любую кнопку, чтобы сделать в него выстрел...";
 			}
 
 			system("pause > nul 2>&1");
@@ -178,21 +178,21 @@ void Russian_roulette_plus_plus::game(gamemodes _gamemode)
 	{
 		system("color 8f");
 
-		std::cout << "\033[7mНИЧЬЯ\033[27m" << std::endl << std::endl;
+		std::cout << "\033[7m \\\\ ! НИЧЬЯ ! // \033[27m" << std::endl << std::endl;
 		std::cout << "Все ходы исчерпаны, и пуля так и не попалась ни одному из вас. Никто не выиграл." << std::endl << std::endl;
 	}
 	else if (game_result == game_results::PLAYER_WIN)
 	{
 		system("color 2f");
 
-		std::cout << "\033[7mПОБЕДА\033[27m" << std::endl << std::endl;
+		std::cout << "\033[7m \\\\ ! ПОБЕДА ! // \033[27m" << std::endl << std::endl;
 		std::cout << "Ваш оппонент умер. Вы победили!" << std::endl << std::endl;
 	}
 	else if (game_result == game_results::OPPONENT_WIN)
 	{
 		system("color 4f");
 
-		std::cout << "\033[7mПОРАЖЕНИЕ\033[27m" << std::endl << std::endl;
+		std::cout << "\033[7m \\\\ ! ПОРАЖЕНИЕ ! // \033[27m" << std::endl << std::endl;
 		std::cout << "Вы умерли. Ваш оппонент победил!" << std::endl << std::endl;
 	}
 

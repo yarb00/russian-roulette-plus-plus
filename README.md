@@ -14,4 +14,4 @@
 
 -----
 
-by *yarb00* (**https://github.con/yarb00**)
+by *yarb00* (**https://github.com/yarb00**)

@@ -1,8 +1,8 @@
-#include "russian_roulette_plus_plus.h"
+#include "RussianRoulettePlusPlus.h"
 
 int main()
 {
-	Russian_roulette_plus_plus game{};
+	RussianRoulettePlusPlus game{};
 
 	game.start();
 

@@ -1,62 +1,62 @@
-#include "russian_roulette_plus_plus.h"
+#include "RussianRoulettePlusPlus.h"
 #include <iostream>
 #include <time.h>
 
-void Russian_roulette_plus_plus::start()
+void RussianRoulettePlusPlus::start()
 {
 	this->main();
 }
 
-void Russian_roulette_plus_plus::print_title()
+void RussianRoulettePlusPlus::printTitle()
 {
 	const std::string version{ "1.1.0" };
 
 	std::cout << "\033[7m| RussianRoulette++ |\033[27m (\033[4m https://github.com/yarb00/russian-roulette-plus-plus \033[24m)" << std::endl << "от yarb00 (\033[4m https://github.com/yarb00 \033[24m)" << std::endl << std::endl << "v" << version << std::endl << std::endl << "-----" << std::endl << std::endl;
 }
 
-void Russian_roulette_plus_plus::menu()
+void RussianRoulettePlusPlus::menu()
 {
 	system("cls");
 
-	this->print_title();
+	this->printTitle();
 	std::cout << "Добро пожаловать в русскую рулетку!" << std::endl << std::endl << "----------" << std::endl << "Нажмите любую кнопку, чтобы начать игру..." << std::endl << "----------";
 
 	system("pause > nul 2>&1");
 
 	while (true)
 	{
-		int gamemode{ -1 };
-		bool is_exit{ false };
+		int gameMode{ -1 };
+		bool isExit{ false };
 
 		system("color 9f");
 
 		system("cls");
 
-		this->print_title();
+		this->printTitle();
 		std::cout << "Выберите режим игры и введите его номер:" << std::endl << std::endl << "0. Выйти из игры" << std::endl << std::endl << "1. 6 ходов (всего 6 попыток/выстрелов) [КЛАССИЧЕСКИЙ]" << std::endl << "2. Бесконечный (продолжается, пока кто-нибудь не проиграет)" << std::endl << "3. 12 ходов (всего 12 попыток/выстрелов) [РЕКОМЕНДУЕТСЯ]" << std::endl << "4. 24 хода (всего 24 попытки/выстрела)" << std::endl << std::endl;
 		std::cout << "Введите номер и нажмите Enter |>>> ";
-		std::cin >> gamemode;
+		std::cin >> gameMode;
 
-		switch (gamemode)
+		switch (gameMode)
 		{
 		case 0:
-			is_exit = true;
+			isExit = true;
 
 			break;
 		case 1:
-			this->game(gamemodes::ATTEMPTS_6);
+			this->game(GameModes::Attempts6);
 
 			break;
 		case 2:
-			this->game(gamemodes::ENDLESS);
+			this->game(GameModes::Endless);
 
 			break;
 		case 3:
-			this->game(gamemodes::ATTEMPTS_12);
+			this->game(GameModes::Attempts12);
 
 			break;
 		case 4:
-			this->game(gamemodes::ATTEMPTS_24);
+			this->game(GameModes::Attempts24);
 
 			break;
 		default:
@@ -66,46 +66,46 @@ void Russian_roulette_plus_plus::menu()
 			break;
 		}
 
-		if (is_exit) break;
+		if (isExit) break;
 	}
 }
 
-void Russian_roulette_plus_plus::game(gamemodes _gamemode)
+void RussianRoulettePlusPlus::game(GameModes gameMode)
 {
 	system("color 1f");
 
 	system("cls");
 
-	const int number_two{ rand() % 6 + 1 };
-	int attempts_left{ 0 };
-	bool is_player_move{ false };
-	game_results game_result{ game_results::DRAW };
+	const int numberTwo{ rand() % 6 + 1 };
+	int attemptsLeft{ 0 };
+	bool isPlayerMove{ false };
+	GameResults gameResult{ GameResults::Draw };
 
-	if (_gamemode == gamemodes::ENDLESS)
+	if (gameMode == GameModes::Endless)
 	{
-		for (attempts_left; true; attempts_left++)
+		for (attemptsLeft; true; attemptsLeft++)
 		{
-			int number_one{ rand() % 6 + 1 };
+			int numberOne{ rand() % 6 + 1 };
 
-			if (number_one == number_two && is_player_move && attempts_left != 0)
+			if (numberOne == numberTwo && isPlayerMove && attemptsLeft != 0)
 			{
-				game_result = game_results::OPPONENT_WIN;
+				gameResult = GameResults::OpponentWin;
 				break;
 			}
-			else if (number_one == number_two && !is_player_move && attempts_left != 0)
+			else if (numberOne == numberTwo && !isPlayerMove && attemptsLeft != 0)
 			{
-				game_result = game_results::PLAYER_WIN;
+				gameResult = GameResults::PlayerWin;
 				break;
 			}
 
-			is_player_move = !is_player_move;
+			isPlayerMove = !isPlayerMove;
 
 			system("cls");
 
-			this->print_title();
-			if (attempts_left != 0) std::cout << "В прошлом ходе выстрела не произошло." << std::endl << std::endl;
+			this->printTitle();
+			if (attemptsLeft != 0) std::cout << "В прошлом ходе выстрела не произошло." << std::endl << std::endl;
 
-			if (is_player_move)
+			if (isPlayerMove)
 			{
 				std::cout << "Сейчас ВАШ ход." << std::endl << std::endl << "Нажмите любую кнопку, чтобы сделать себе выстрел...";
 			}
@@ -117,47 +117,47 @@ void Russian_roulette_plus_plus::game(gamemodes _gamemode)
 			system("pause > nul 2>&1");
 		}
 	}
-	else if (_gamemode == gamemodes::ATTEMPTS_6)
+	else if (gameMode == GameModes::Attempts6)
 	{
-		attempts_left = 6;
+		attemptsLeft = 6;
 	}
-	else if (_gamemode == gamemodes::ATTEMPTS_12)
+	else if (gameMode == GameModes::Attempts12)
 	{
-		attempts_left = 12;
+		attemptsLeft = 12;
 	}
-	else if (_gamemode == gamemodes::ATTEMPTS_24)
+	else if (gameMode == GameModes::Attempts24)
 	{
-		attempts_left = 24;
+		attemptsLeft = 24;
 	}
 	
-	if (_gamemode != gamemodes::ENDLESS)
+	if (gameMode != GameModes::Endless)
 	{
-		int real_attempts{ attempts_left };
+		int realAttempts{ attemptsLeft };
 
-		for (attempts_left; attempts_left > 0; attempts_left--)
+		for (attemptsLeft; attemptsLeft > 0; attemptsLeft--)
 		{
-			int number_one{ rand() % 6 + 1 };
+			int numberOne{ rand() % 6 + 1 };
 
-			if (number_one == number_two && is_player_move && attempts_left - real_attempts != 0)
+			if (numberOne == numberTwo && isPlayerMove && attemptsLeft - realAttempts != 0)
 			{
-				game_result = game_results::OPPONENT_WIN;
+				gameResult = GameResults::OpponentWin;
 				break;
 			}
-			else if (number_one == number_two && !is_player_move && attempts_left - real_attempts != 0)
+			else if (numberOne == numberTwo && !isPlayerMove && attemptsLeft - realAttempts != 0)
 			{
-				game_result = game_results::PLAYER_WIN;
+				gameResult = GameResults::PlayerWin;
 				break;
 			}
 
-			is_player_move = !is_player_move;
+			isPlayerMove = !isPlayerMove;
 
 			system("cls");
 
-			this->print_title();
-			if (attempts_left - real_attempts != 0) std::cout << "В прошлом ходе выстрела не произошло." << std::endl << std::endl;
-			std::cout << "Осталось " << attempts_left << " ходов." << std::endl << std::endl;
+			this->printTitle();
+			if (attemptsLeft - realAttempts != 0) std::cout << "В прошлом ходе выстрела не произошло." << std::endl << std::endl;
+			std::cout << "Осталось " << attemptsLeft << " ходов." << std::endl << std::endl;
 
-			if (is_player_move)
+			if (isPlayerMove)
 			{
 				std::cout << "Сейчас ВАШ ход." << std::endl << std::endl << "Нажмите любую кнопку, чтобы сделать себе выстрел...";
 			}
@@ -172,23 +172,23 @@ void Russian_roulette_plus_plus::game(gamemodes _gamemode)
 
 	system("cls");
 
-	this->print_title();
+	this->printTitle();
 
-	if (game_result == game_results::DRAW)
+	if (gameResult == GameResults::Draw)
 	{
 		system("color 8f");
 
 		std::cout << "\033[7m \\\\ ! НИЧЬЯ ! // \033[27m" << std::endl << std::endl;
 		std::cout << "Все ходы исчерпаны, и пуля так и не попалась ни одному из вас. Никто не выиграл." << std::endl << std::endl;
 	}
-	else if (game_result == game_results::PLAYER_WIN)
+	else if (gameResult == GameResults::PlayerWin)
 	{
 		system("color 2f");
 
 		std::cout << "\033[7m \\\\ ! ПОБЕДА ! // \033[27m" << std::endl << std::endl;
 		std::cout << "Ваш оппонент умер. Вы победили!" << std::endl << std::endl;
 	}
-	else if (game_result == game_results::OPPONENT_WIN)
+	else if (gameResult == GameResults::OpponentWin)
 	{
 		system("color 4f");
 
@@ -200,7 +200,7 @@ void Russian_roulette_plus_plus::game(gamemodes _gamemode)
 	system("pause > nul 2>&1");
 }
 
-void Russian_roulette_plus_plus::main()
+void RussianRoulettePlusPlus::main()
 {
 	srand(time(NULL));
 

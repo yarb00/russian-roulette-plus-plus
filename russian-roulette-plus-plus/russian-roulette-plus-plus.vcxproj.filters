@@ -18,12 +18,12 @@
     <ClCompile Include="main.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="russian_roulette_plus_plus.cpp">
+    <ClCompile Include="RussianRoulettePlusPlus.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="russian_roulette_plus_plus.h">
+    <ClInclude Include="RussianRoulettePlusPlus.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>

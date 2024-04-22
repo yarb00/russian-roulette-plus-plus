@@ -130,10 +130,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="russian_roulette_plus_plus.cpp" />
+    <ClCompile Include="RussianRoulettePlusPlus.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="russian_roulette_plus_plus.h" />
+    <ClInclude Include="RussianRoulettePlusPlus.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
